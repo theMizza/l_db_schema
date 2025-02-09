@@ -1,0 +1,27 @@
+from django.contrib import admin
+from .models import *
+
+
+admin.site.register(Clients)
+admin.site.register(DocTypes)
+admin.site.register(ClientsDocuments)
+admin.site.register(InsuranceTypes)
+admin.site.register(InsuranceVendors)
+admin.site.register(InsuranceObjects)
+admin.site.register(Currencies)
+admin.site.register(VehicleStates)
+admin.site.register(VehicleDealers)
+admin.site.register(VehicleModels)
+admin.site.register(IncomeProofTypes)
+admin.site.register(CreditPrograms)
+admin.site.register(PaymentCalculationType)
+admin.site.register(SpecialConditions)
+admin.site.register(MandatoryDocuments)
+admin.site.register(MandatoryInsurances)
+admin.site.register(Credits)
+admin.site.register(Insurances)
+admin.site.register(PaymentConditions)
+admin.site.register(PaymentChangeReasons)
+admin.site.register(PaymentSchedules)
+admin.site.register(PaymentDelays)
+admin.site.register(BlackLists)

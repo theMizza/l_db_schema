@@ -1,0 +1,168 @@
+Table Clients {
+  id int [pk, increment]
+  first_name varchar(300)
+  last_name varchar(300)
+  middle_name varchar(300)
+  email varchar(100)
+  phone varchar(20)
+  income decimal(15, 2)
+  family_income decimal(15, 2)
+}
+
+Table DocTypes {
+  id int [pk, increment]
+  name varchar(100)
+}
+
+Table ClientsDocuments {
+  id int [pk, increment]
+  name varchar(300)
+  doc_type_id int [ref: > DocTypes.id]
+  client int [ref: > Clients.id]
+  file varchar(255)
+  is_checked boolean
+  change_date date
+}
+
+Table InsuranceTypes {
+  id int [pk, increment]
+  name varchar(100)
+}
+
+Table InsuranceVendors {
+  id int [pk, increment]
+  name varchar(100)
+}
+
+Table InsuranceObjects {
+  id int [pk, increment]
+  name varchar(100)
+}
+
+Table Currencies {
+  id int [pk, increment]
+  name varchar(300)
+  symbol varchar(10)
+}
+
+Table VehicleStates {
+  id int [pk, increment]
+  name varchar(300)
+}
+
+Table VehicleDealers {
+  id int [pk, increment]
+  name varchar(300)
+}
+
+Table VehicleModels {
+  id int [pk, increment]
+  name varchar(300)
+}
+
+Table IncomeProofTypes {
+  id int [pk, increment]
+  name varchar(300)
+}
+
+Table CreditPrograms {
+  id int [pk, increment]
+  name varchar(300)
+  loan_size decimal(15, 2)
+  period int
+  init_payment decimal(15, 2)
+  income_proof_type_id int [ref: > IncomeProofTypes.id]
+  currency_id int [ref: > Currencies.id]
+  vehicle_state_id int [ref: > VehicleStates.id]
+  interest_rate decimal(5, 2)
+  commission decimal(15, 2)
+  early_repayment boolean
+  early_repayment_commission decimal(5, 2)
+  use_family_income boolean
+}
+
+Table PaymentCalculationType {
+  id int [pk, increment]
+  name varchar(300)
+  credit_programm_id int [ref: > CreditPrograms.id]
+}
+
+Table SpecialConditions {
+  id int [pk, increment]
+  name varchar(300)
+  credit_programm_id int [ref: > CreditPrograms.id]
+  vehicle_dealer_id int [ref: > VehicleDealers.id]
+  insurance_vendor_id int [ref: > InsuranceVendors.id]
+  vehicle_model_id int [ref: > VehicleModels.id]
+  condition varchar(300)
+}
+
+Table MandatoryDocuments {
+  id int [pk, increment]
+  name varchar(300)
+  credit_programm_id int [ref: > CreditPrograms.id]
+  document_type_id int [ref: > DocTypes.id]
+}
+
+Table MandatoryInsurances {
+  id int [pk, increment]
+  name varchar(300)
+  credit_programm_id int [ref: > CreditPrograms.id]
+  insurance_type_id int [ref: > InsuranceTypes.id]
+  insurance_object_id int [ref: > InsuranceObjects.id]
+}
+
+Table Credits {
+  id int [pk, increment]
+  client_id int [ref: > Clients.id]
+  guarantor_id int [ref: > Clients.id]
+  credit_program_id int [ref: > CreditPrograms.id]
+  loan_size decimal(15, 2)
+  period int
+  init_payment decimal(15, 2)
+  interest_rate decimal(5, 2)
+}
+
+Table Insurances {
+  id int [pk, increment]
+  name varchar(300)
+  credit_id int [ref: > Credits.id]
+  insurance_type_id int [ref: > InsuranceTypes.id]
+  insurance_object_id int [ref: > InsuranceObjects.id]
+  client_id int [ref: > Clients.id]
+  insurance_vendor_id int [ref: > InsuranceVendors.id]
+  date_from datetime
+  date_to datetime
+  document varchar(255)
+}
+
+Table PaymentConditions {
+  id int [pk, increment]
+  name varchar(300)
+}
+
+Table PaymentChangeReasons {
+  id int [pk, increment]
+  name varchar(300)
+}
+
+Table PaymentSchedules {
+  id int [pk, increment]
+  credit_id int [ref: > Credits.id]
+  date datetime
+  main_payment_amount decimal(15, 2)
+  percents_payment_amount decimal(15, 2)
+  condition_id int [ref: > PaymentConditions.id]
+  reason_id int [ref: > PaymentChangeReasons.id]
+}
+
+Table PaymentDelays {
+  id int [pk, increment]
+  credit_id int [ref: > Credits.id]
+  payment_id int [ref: > PaymentSchedules.id]
+}
+
+Table BlackLists {
+  id int [pk, increment]
+  client_id int [ref: > Clients.id]
+}
