@@ -110,7 +110,6 @@ CREATE TABLE payment_change_reasons (
     name VARCHAR(300) NOT NULL
 );
 
--- Таблицы с внешними ключами (порядок важен)
 CREATE TABLE credit_programs (
     id SERIAL PRIMARY KEY,
     name VARCHAR(300) NOT NULL,
@@ -213,6 +212,7 @@ CREATE TABLE black_lists (
     client_id INTEGER REFERENCES clients(id) ON DELETE SET NULL
 );
 ```
+- ТК не было достаточно времени на настройку проекта и мигратора просьба ознакомиться с названием таблиц в бд (запрос указан на фронте)
 
 # Примеры запросов:
 1) Подбор кредитной программы (Запрос через фронт приложения):
