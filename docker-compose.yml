@@ -17,6 +17,7 @@ services:
     container_name: django
     command: >
       sh -c "python3 ./server/manage.py migrate &&
+             python3 ./server/populate_db.py &&
              python3 ./server/manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/usr/src/app/

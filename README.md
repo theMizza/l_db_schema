@@ -5,35 +5,13 @@
 
 # Как запустить проект:
 1) Клонируем проект к себе
-2) Создаем в директории с docker-compose.yml файл .env со следующим содержимым:
-```commandline
-SQL_ENGINE=django.db.backends.postgresql
-SQL_DATABASE=postgres
-SQL_USER=postgres
-SQL_PASSWORD=Prud3r@shlaffers
-SQL_HOST=pgdb
-SQL_PORT=5432
-POSTGRES_HOST=pgdb
-POSTGRES_NAME=postgres
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=Prud3r@shlaffers
-POSTGRES_PORT=5432
-```
-3) Создаем в директории с docker-compose.yml файл .env.db со следующим содержимым:
-```commandline
-POSTGRES_HOST=localhost
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=Prud3r@shlaffers
-POSTGRES_DB=postgres
-POSTGRES_PORT=5432
-```
-4) cd в директорию с проектом
-5) В директории, где лежит docker-compose файл выполняем команду ```docker-compose up --build```
-6) Ждем сборку проекта
-7) Когда проект собрался, нужно создать админа (чтобы просматривать таблицы в админке)
+2) cd в директорию с проектом
+3) В директории, где лежит docker-compose файл выполняем команду ```docker-compose up --build```
+4) Ждем сборку проекта
+5) Когда проект собрался, нужно создать админа (чтобы просматривать таблицы в админке)
 Вводим ```docker exec -it django bash```
-8) Попадаем в окружение Python, вводим ```cd server```
-9) Вводим ```python manage.py createsuperuser``` и следуем инструкциям
+6) Попадаем в окружение Python, вводим ```cd server```
+7) Вводим ```python manage.py createsuperuser``` и следуем инструкциям
 
 Как только суперюзер создан, проект можно открыть по адресу ```http://127.0.0.1:8000/```
 Админка будет доступна по адресу ```http://127.0.0.1:8000/admin```
